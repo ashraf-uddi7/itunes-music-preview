@@ -1,0 +1,217 @@
+/* grid */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  >div {
+    box-sizing: border-box;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+  }
+
+  .c1-xs {
+    width: 8.33%;
+  }
+
+  .c2-xs {
+    width: 16.66%;
+  }
+
+  .c3-xs {
+    width: 25%;
+  }
+
+  .c4-xs {
+    width: 33.33%;
+  }
+
+  .c5-xs {
+    width: 41.66%;
+  }
+
+  .c6-xs {
+    width: 50%;
+  }
+
+  .c7-xs {
+    width: 58.33%;
+  }
+
+  .c8-xs {
+    width: 66.366%;
+  }
+
+  .c9-xs {
+    width: 75%
+  }
+
+  .c10-xs {
+    width: 83.33%;
+  }
+
+  .c11-xs {
+    width: 91.66%;
+  }
+
+  .c12-xs {
+    width: 100%
+  }
+}
+
+@media (min-width: 576px) {
+  .row {
+    .c1-sm {
+      width: 8.33%;
+    }
+
+    .c2-sm {
+      width: 16.66%;
+    }
+
+    .c3-sm {
+      width: 25%;
+    }
+
+    .c4-sm {
+      width: 33.33%;
+    }
+
+    .c5-sm {
+      width: 41.66%;
+    }
+
+    .c6-sm {
+      width: 50%;
+    }
+
+    .c7-sm {
+      width: 58.33%;
+    }
+
+    .c8-sm {
+      width: 66.366%;
+    }
+
+    .c9-sm {
+      width: 75%
+    }
+
+    .c10-sm {
+      width: 83.33%;
+    }
+
+    .c11-sm {
+      width: 91.66%;
+    }
+
+    .c12-sm {
+      width: 100%
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .row {
+    .c1-md {
+      width: 8.33%;
+    }
+
+    .c2-md {
+      width: 16.66%;
+    }
+
+    .c3-md {
+      width: 25%;
+    }
+
+    .c4-md {
+      width: 33.33%;
+    }
+
+    .c5-md {
+      width: 41.66%;
+    }
+
+    .c6-md {
+      width: 50%;
+    }
+
+    .c7-md {
+      width: 58.33%;
+    }
+
+    .c8-md {
+      width: 66.366%;
+    }
+
+    .c9-md {
+      width: 75%
+    }
+
+    .c10-md {
+      width: 83.33%;
+    }
+
+    .c11-md {
+      width: 91.66%;
+    }
+
+    .c12-md {
+      width: 100%
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .row {
+    .c1-lg {
+      width: 8.33%;
+    }
+
+    .c2-lg {
+      width: 16.66%;
+    }
+
+    .c3-lg {
+      width: 25%;
+    }
+
+    .c4-lg {
+      width: 33.33%;
+    }
+
+    .c5-lg {
+      width: 41.66%;
+    }
+
+    .c6-lg {
+      width: 50%;
+    }
+
+    .c7-lg {
+      width: 58.33%;
+    }
+
+    .c8-lg {
+      width: 66.366%;
+    }
+
+    .c9-lg {
+      width: 75%
+    }
+
+    .c10-lg {
+      width: 83.33%;
+    }
+
+    .c11-lg {
+      width: 91.66%;
+    }
+
+    .c12-lg {
+      width: 100%
+    }
+  }
+}
