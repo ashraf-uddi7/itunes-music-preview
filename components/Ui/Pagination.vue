@@ -81,7 +81,6 @@ export default {
     a {
       cursor: pointer;
       font-weight: bold;
-      user-select: none;
       &.disabled {
         font-weight: normal;
         cursor: no-drop;
