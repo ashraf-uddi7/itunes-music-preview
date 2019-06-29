@@ -1,6 +1,7 @@
 export default {
   components: {
-    pagination: () => import("../Ui/Pagination.vue")
+    pagination: () => import("../Ui/Pagination.vue"),
+    loading: () => import("../Ui/Loading.jsx")
   },
   props: {
     albums: {
@@ -36,27 +37,23 @@ export default {
   methods: {
     onChangePagination(pagination) {
       this.pagination = { ...pagination };
+    },
+    openAlbum(album) {
+      this.$store.commit("store/SET_ALBUM", album);
+      this.$router.push("album");
     }
   },
   render(h) {
     let table = <b> ... </b>;
     if (this.loading) {
-      table = (
-        <div class="lds-roller">
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-          <div />
-        </div>
-      );
+      table = <loading loading />;
     } else if (this.filterdAlbums.length) {
       const rows = this.filterdAlbums.map(album => {
         return (
-          <tr key={album.collectionId}>
+          <tr
+            key={album.collectionId}
+            on-click={this.openAlbum.bind(this, album)}
+          >
             <td class="art">
               <picture>
                 <img src={album.artworkUrl60} />
