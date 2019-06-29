@@ -1,7 +1,6 @@
 export const state = () => ({
   term: "",
-  artist: null,
-  artists: null,
+  album: null,
   albums: null,
   songs: null,
   loading: false
@@ -9,7 +8,7 @@ export const state = () => ({
 
 export const getters = {
   term: ({ term }) => term,
-  artists: ({ artists }) => artists,
+  album: ({ album }) => album,
   albums: ({ albums }) => albums,
   songs: ({ songs }) => songs,
   loading: ({ loading }) => loading
@@ -17,8 +16,7 @@ export const getters = {
 
 export const mutations = {
   SET_TERM: (state, payload) => (state.term = payload),
-  SET_ARTIST: (state, payload) => (state.artist = payload),
-  SET_ARTISTS: (state, payload) => (state.artists = payload),
+  SET_ALBUM: (state, payload) => (state.album = payload),
   SET_ALBUMS: (state, payload) => (state.albums = payload),
   SET_SONGS: (state, payload) => (state.songs = payload),
   START_LOADING: state => (state.loading = true),
@@ -38,8 +36,6 @@ export const actions = {
       if (!response.results || !response.results.length) {
         return commit("FINISH_LOADING");
       }
-
-      commit("SET_ARTISTS", response.results);
       // transform artists list in a string with their ids.
       // example: [{ artistId: 1, artistId: 2, artistId: 3}] => "1,2,3"
       const artistsIds = response.results
