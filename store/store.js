@@ -1,24 +1,19 @@
 export const state = () => ({
-  term: "",
-  artist: null,
-  artists: null,
+  album: null,
   albums: null,
   songs: null,
   loading: false
 });
 
 export const getters = {
-  term: ({ term }) => term,
-  artists: ({ artists }) => artists,
+  album: ({ album }) => album,
   albums: ({ albums }) => albums,
   songs: ({ songs }) => songs,
   loading: ({ loading }) => loading
 };
 
 export const mutations = {
-  SET_TERM: (state, payload) => (state.term = payload),
-  SET_ARTIST: (state, payload) => (state.artist = payload),
-  SET_ARTISTS: (state, payload) => (state.artists = payload),
+  SET_ALBUM: (state, payload) => (state.album = payload),
   SET_ALBUMS: (state, payload) => (state.albums = payload),
   SET_SONGS: (state, payload) => (state.songs = payload),
   START_LOADING: state => (state.loading = true),
@@ -38,8 +33,6 @@ export const actions = {
       if (!response.results || !response.results.length) {
         return commit("FINISH_LOADING");
       }
-
-      commit("SET_ARTISTS", response.results);
       // transform artists list in a string with their ids.
       // example: [{ artistId: 1, artistId: 2, artistId: 3}] => "1,2,3"
       const artistsIds = response.results
@@ -62,14 +55,19 @@ export const actions = {
     commit("SET_ALBUMS", albums);
     commit("FINISH_LOADING");
   },
-  async getSongs({ commit }, artistsIds) {
-    const response = await this.$axios.$get(
-      `/api/lookup?id=${artistsIds}&entity=song&limit=100`
-    );
-    // remove user info item
-    response.results.splice(0, 1);
-
-    commit("SET_SONGS", response.results);
-    commit("FINISH_LOADING");
+  async getSongs({ commit, state }) {
+    commit("START_LOADING");
+    try {
+      const response = await this.$axios.$get(
+        `/api/lookup?id=${state.album.collectionId}&entity=song&limit=100`
+      );
+      const songs = response.results.filter(
+        song => song.wrapperType == "track"
+      );
+      commit("SET_SONGS", songs);
+      commit("FINISH_LOADING");
+    } catch (error) {
+      commit("FINISH_LOADING");
+    }
   }
 };

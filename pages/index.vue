@@ -1,59 +1,53 @@
 <template>
-  <div>
-    <header>
-      <div class="container">
-        <div class="row">
-          <div class="c6-xs c4-md c3-lg">
-            <h2 class="logo">
-              Pontomais Music
-            </h2>
-          </div>
-          <div class="c6-xs c8-md c9-lg">
-            <input-component
-              :loading="loading"
-              placeholder="Busque um artista"
-              @change="search"
-            />
-          </div>
-        </div>
-      </div>
-    </header>
+  <main>
     <div class="container">
-      <albums />
+      <table-albums :albums="albums" :loading="loading" />
     </div>
-    <div />
-  </div>
+  </main>
 </template>
 
 <script>
 export default {
   components: {
-    albums: () => import("../components/Albums/Albums.vue"),
-    inputComponent: () => import("../components/Ui/Input.vue")
+    tableAlbums: () => import("~/components/Albums/TableAlbums.jsx")
   },
   computed: {
+    albums() {
+      const albums = this.$store.getters["store/albums"];
+      if (!albums) {
+        return [];
+      }
+      return albums;
+    },
     loading() {
       return this.$store.getters["store/loading"];
-    }
-  },
-  mounted() {
-    this.search({ target: { value: "bethoven" } });
-  },
-  methods: {
-    search(term) {
-      if (this.loading) {
-        return false;
-      }
-
-      if (term.length >= 3) {
-        this.$store.dispatch("store/getArtists", term.replace(/\s/g, "+"));
-      }
     }
   }
 };
 </script>
-
 <style lang="scss">
-@import "~/assets/style/app.scss";
-@import "~/assets/style/responsive.scss";
+@import "~/assets/style/table.scss";
+@media only screen and (max-width: 760px) {
+  table {
+    tbody {
+      tr {
+        td:nth-of-type(1):before {
+          content: "Arte";
+        }
+
+        td:nth-of-type(2):before {
+          content: "Artista";
+        }
+
+        td:nth-of-type(3):before {
+          content: "Album";
+        }
+
+        td:nth-of-type(4):before {
+          content: "Gênero";
+        }
+      }
+    }
+  }
+}
 </style>

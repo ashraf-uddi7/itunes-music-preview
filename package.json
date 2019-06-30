@@ -1,5 +1,5 @@
 {
-  "name": "pontomais-musics",
+  "name": "apple-music-preview",
   "version": "1.0.0",
   "description": "Music library consuming apple itunes api.",
   "author": "Gabriel Umbelino",
@@ -14,7 +14,9 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
-    "nuxt": "^2.0.0"
+    "material-design-icons-iconfont": "^5.0.1",
+    "nuxt": "^2.0.0",
+    "vue-radial-progress": "^0.2.10"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
