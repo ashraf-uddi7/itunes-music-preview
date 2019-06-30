@@ -2,21 +2,38 @@
   <div v-if="size" class="container pagination">
     <div class="row">
       <div class="c6-xs">
-        <div class="row">
-          <div class="c5-xs">
-            <a :class="{ disabled: current == 1 }" @click.prevent="prev">
-              anterior
-            </a>
-          </div>
-          <div class="c2-xs">{{ current }}</div>
-          <div class="c5-xs">
-            <a :class="{ disabled: current == pages }" @click.prevent="next">
-              próxima
-            </a>
-          </div>
+        <div class="text-left">
+          <a :class="{ disabled: current == 1 }" @click="firstPage">
+            <i class="material-icons"> first_page </i>
+          </a>
+          <a :class="{ disabled: current == 1 }" @click="prev">
+            <i class="material-icons"> navigate_before </i>
+          </a>
+          <a v-if="current > 2" @click.prevent="current = current - 2">
+            {{ current - 2 }}
+          </a>
+          <a v-if="current != 1" @click.prevent="current = current - 1">
+            {{ current - 1 }}
+          </a>
+          <b>{{ current }}</b>
+          <a v-if="current != pages" @click.prevent="current = current + 1">
+            {{ current + 1 }}
+          </a>
+          <a
+            v-if="current == 1 && current + 2 < pages"
+            @click.prevent="current = current + 2"
+          >
+            {{ current + 2 }}
+          </a>
+          <a :class="{ disabled: current == pages }" @click="next">
+            <i class="material-icons"> navigate_next </i>
+          </a>
+          <a :class="{ disabled: current == pages }" @click="lastPage">
+            <i class="material-icons"> last_page </i>
+          </a>
         </div>
       </div>
-      <div class="c6-xs">
+      <div class="c6-xs text-right">
         {{ itemsFrom + 1 }} a {{ itemsTo + 1 }} de {{ size + 1 }}
       </div>
     </div>
@@ -60,6 +77,12 @@ export default {
       }
       this.current = this.current + 1;
     },
+    firstPage() {
+      this.current = 1;
+    },
+    lastPage() {
+      this.current = this.pages;
+    },
     updateItems() {
       const itemsTo = this.current * this.itemsPerPage;
       this.itemsTo = itemsTo > this.size ? this.size : itemsTo;
@@ -77,13 +100,24 @@ export default {
 <style lang="scss" scoped>
 .pagination {
   padding: 20px 0;
+  user-select: none;
   .row {
+    b {
+      text-decoration: underline;
+    }
     a {
       cursor: pointer;
       font-weight: bold;
+      height: 32px;
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 2px;
       &.disabled {
         font-weight: normal;
         cursor: no-drop;
+      }
+      i {
+        margin: -1px 0px;
       }
     }
   }
