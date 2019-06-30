@@ -2,7 +2,7 @@
   <main>
     <div class="container">
       <div class="row">
-        <card
+        <Card
           classes="c8-xs c10-md c10-lg"
           :title="album.collectionName"
           :subtitle="album.artistName"
@@ -13,13 +13,15 @@
           <a @click="$router.push('/')">voltar</a>
         </div>
       </div>
+      <SongsTable :songs="songs" :loading="loading" />
     </div>
   </main>
 </template>
 <script>
 export default {
   components: {
-    card: () => import("~/components/Ui/Card.jsx")
+    Card: () => import("~/components/Ui/Card.jsx"),
+    SongsTable: () => import("~/components/Album/SongsTable.jsx")
   },
   computed: {
     album() {
@@ -27,9 +29,24 @@ export default {
       if (!album) {
         return {};
       }
-
       return album;
+    },
+    songs() {
+      const songs = this.$store.getters["store/songs"];
+      if (!songs) {
+        return [];
+      }
+      return songs;
+    },
+    loading() {
+      return this.$store.getters["store/loading"];
     }
+  },
+  mounted() {
+    if (!this.album.artistId) {
+      this.$router.push("/");
+    }
+    this.$store.dispatch("store/getSongs");
   }
 };
 </script>
@@ -60,6 +77,10 @@ export default {
   font-weight: bold;
 }
 picture {
+  transition: all linear 0.4s;
+  img {
+    transition: all linear 0.4s;
+  }
   .controls {
     position: absolute;
     width: 100%;
@@ -93,5 +114,17 @@ picture {
 picture:hover .controls,
 tr.active picture .controls {
   opacity: 1;
+  z-index: 1;
+}
+tr {
+  cursor: default;
+}
+tr.active {
+  picture {
+    border-radius: 100%;
+    img {
+      animation: rotate 3s linear infinite;
+    }
+  }
 }
 </style>

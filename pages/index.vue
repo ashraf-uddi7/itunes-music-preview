@@ -22,11 +22,6 @@ export default {
     loading() {
       return this.$store.getters["store/loading"];
     }
-  },
-  methods: {
-    onChangePage(e) {
-      console.log(e);
-    }
   }
 };
 </script>
