@@ -1,5 +1,4 @@
 export const state = () => ({
-  term: "",
   album: null,
   albums: null,
   songs: null,
@@ -7,7 +6,6 @@ export const state = () => ({
 });
 
 export const getters = {
-  term: ({ term }) => term,
   album: ({ album }) => album,
   albums: ({ albums }) => albums,
   songs: ({ songs }) => songs,
@@ -15,7 +13,6 @@ export const getters = {
 };
 
 export const mutations = {
-  SET_TERM: (state, payload) => (state.term = payload),
   SET_ALBUM: (state, payload) => (state.album = payload),
   SET_ALBUMS: (state, payload) => (state.albums = payload),
   SET_SONGS: (state, payload) => (state.songs = payload),
@@ -58,14 +55,19 @@ export const actions = {
     commit("SET_ALBUMS", albums);
     commit("FINISH_LOADING");
   },
-  async getSongs({ commit }, artistsIds) {
-    const response = await this.$axios.$get(
-      `/api/lookup?id=${artistsIds}&entity=song&limit=100`
-    );
-    // remove user info item
-    response.results.splice(0, 1);
-
-    commit("SET_SONGS", response.results);
-    commit("FINISH_LOADING");
+  async getSongs({ commit, state }) {
+    commit("START_LOADING");
+    try {
+      const response = await this.$axios.$get(
+        `/api/lookup?id=${state.album.collectionId}&entity=song&limit=100`
+      );
+      const songs = response.results.filter(
+        song => song.wrapperType == "track"
+      );
+      commit("SET_SONGS", songs);
+      commit("FINISH_LOADING");
+    } catch (error) {
+      commit("FINISH_LOADING");
+    }
   }
 };
