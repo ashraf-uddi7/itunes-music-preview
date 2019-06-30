@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import "material-design-icons-iconfont/dist/material-design-icons.css";
+
 export default {
   components: {
     inputComponent: () => import("../components/Ui/Input.vue")
