@@ -5,7 +5,7 @@
         <div class="row">
           <div class="c6-xs c4-md c3-lg">
             <h2 class="logo">
-              Pontomais Music
+              Apple Music Preview
             </h2>
           </div>
           <div class="c6-xs c8-md c9-lg">
