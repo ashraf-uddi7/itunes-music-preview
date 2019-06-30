@@ -114,12 +114,6 @@ main {
   span {
     color: #8e8e93;
   }
-  &:hover {
-    background-color: #f8f8f8;
-    box-shadow: 0px 1px 3px 0px #dedede;
-    transition: all ease 0.3s;
-    cursor: pointer;
-  }
 }
 
 .text-center {
@@ -131,6 +125,7 @@ main {
 .text-right {
   text-align: right;
 }
+
 
 
 /* typography*/
@@ -270,4 +265,13 @@ main {
     }
   }
 
+}
+
+@keyframes rotate {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
 }
