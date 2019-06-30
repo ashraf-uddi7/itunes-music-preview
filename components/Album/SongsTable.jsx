@@ -1,4 +1,3 @@
-import "material-design-icons-iconfont/dist/material-design-icons.css";
 export default {
   components: {
     loading: () => import("../Ui/Loading.jsx"),
