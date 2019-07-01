@@ -1,55 +1,57 @@
 <template>
   <div>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="c6-xs c4-md c3-lg">
+            <h2 class="logo">
+              Apple Music Preview
+            </h2>
+          </div>
+          <div class="c6-xs c8-md c9-lg">
+            <input-component
+              :loading="loading"
+              placeholder="Busque um artista"
+              @change="search"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
     <nuxt />
   </div>
 </template>
 
-<style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
+<script>
+import "material-design-icons-iconfont/dist/material-design-icons.css";
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
+export default {
+  components: {
+    inputComponent: () => import("../components/Ui/Input.vue")
+  },
+  computed: {
+    loading() {
+      return this.$store.getters["store/loading"];
+    }
+  },
+  mounted() {
+    this.search({ target: { value: "bethoven" } });
+  },
+  methods: {
+    search(term) {
+      if (this.loading) {
+        return false;
+      }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
+      if (term.length >= 3) {
+        this.$store.dispatch("store/getArtists", term.replace(/\s/g, "+"));
+      }
+    }
+  }
+};
+</script>
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
+<style lang="scss">
+@import "~/assets/style/app.scss";
+@import "~/assets/style/responsive.scss";
 </style>

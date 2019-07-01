@@ -1,72 +1,58 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        pontomais-musics
-      </h1>
-      <h2 class="subtitle">
-        Music library consuming apple itunes api.
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+  <main>
+    <div class="container">
+      <table-albums :albums="albums" :loading="loading" />
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
+  transition: "fade",
   components: {
-    Logo
+    tableAlbums: () => import("~/components/Albums/TableAlbums.vue")
+  },
+  computed: {
+    albums() {
+      const albums = this.$store.getters["store/albums"];
+      if (!albums) {
+        return [];
+      }
+      return albums;
+    },
+    loading() {
+      return this.$store.getters["store/loading"];
+    }
   }
-}
+};
 </script>
+<style lang="scss">
+@import "~/assets/style/table.scss";
+@media only screen and (max-width: 760px) {
+  table {
+    tbody {
+      tr {
+        td:nth-of-type(1):before {
+          content: "Arte";
+        }
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+        td:nth-of-type(2):before {
+          content: "Artista";
+        }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+        td:nth-of-type(3):before {
+          content: "Album";
+        }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
+        td:nth-of-type(4):before {
+          content: "Gênero";
+        }
 
-.links {
-  padding-top: 15px;
+        td:nth-of-type(5):before {
+          content: "Lançamento";
+        }
+      }
+    }
+  }
 }
 </style>
