@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  transition: "fade",
   components: {
     tableAlbums: () => import("~/components/Albums/TableAlbums.vue")
   },

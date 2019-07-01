@@ -19,6 +19,7 @@
 </template>
 <script>
 export default {
+  transition: "fade",
   components: {
     Card: () => import("~/components/Ui/Card.jsx"),
     SongsTable: () => import("~/components/Album/SongsTable.jsx")
