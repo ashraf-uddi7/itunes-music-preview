@@ -1,7 +1,7 @@
 <template>
   <div v-if="size" class="container pagination">
     <div class="row">
-      <div class="c6-xs">
+      <div class="c8-xs">
         <div class="text-left">
           <a :class="{ disabled: current == 1 }" @click="firstPage">
             <i class="material-icons"> first_page </i>
@@ -33,7 +33,7 @@
           </a>
         </div>
       </div>
-      <div class="c6-xs text-right">
+      <div class="c4-xs text-right">
         {{ itemsFrom + 1 }} a {{ itemsTo + 1 }} de {{ size + 1 }}
       </div>
     </div>

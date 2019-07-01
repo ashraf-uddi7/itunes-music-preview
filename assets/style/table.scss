@@ -150,13 +150,14 @@ table {
         border-bottom-style: solid;
         border-bottom-width: 1px;
         border-color: #e5e5e5;
+        padding-top: 22px;
 
         td {
           border: none !important;
 
           p {
             position: relative;
-            margin: 9px 0;
+            margin: 19px 0;
             margin-left: 26%;
             width: calc(100% - 26%);
           }
@@ -164,10 +165,16 @@ table {
           picture {
             border: none;
             position: relative;
+
             margin-left: 30%;
             height: 100%;
             border-radius: 4px;
             width: fit-content;
+            img {
+              height: 60px;
+              width: auto;
+              max-height: 100%;
+            }
           }
         }
 
@@ -185,26 +192,7 @@ table {
           font-size: 13px;
           white-space: nowrap;
         }
-
-        td:nth-of-type(1):before {
-          content: "Arte";
-        }
-
-        td:nth-of-type(2):before {
-          content: "Título";
-        }
-
-        td:nth-of-type(3):before {
-          content: "Artista";
-        }
-
-        td:nth-of-type(4):before {
-          content: "Album";
-        }
       }
     }
   }
-
-
-
 }

@@ -120,6 +120,21 @@ export default {
       }
       tr {
         cursor: default;
+        td:nth-of-type(1):before {
+          content: "Arte";
+        }
+
+        td:nth-of-type(2):before {
+          content: "Música";
+        }
+
+        td:nth-of-type(3):before {
+          content: "Tempo";
+        }
+
+        td:nth-of-type(4):before {
+          content: "Número";
+        }
       }
       tr.active {
         picture {

@@ -46,6 +46,10 @@ export default {
         td:nth-of-type(4):before {
           content: "Gênero";
         }
+
+        td:nth-of-type(5):before {
+          content: "Lançamento";
+        }
       }
     }
   }
