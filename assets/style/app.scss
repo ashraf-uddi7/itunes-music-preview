@@ -101,7 +101,7 @@ main {
     display: -webkit-box;
     display: -ms-flexbox;
     display: block;
-    padding: 3px 9px;
+    padding: 15px 10px 0px 0;
     margin: 0;
     font-size: 20px;
     position: relative;
@@ -275,3 +275,16 @@ main {
       transform: rotate(360deg);
   }
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}
+
+

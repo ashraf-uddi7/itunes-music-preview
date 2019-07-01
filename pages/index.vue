@@ -8,8 +8,9 @@
 
 <script>
 export default {
+  transition: "fade",
   components: {
-    tableAlbums: () => import("~/components/Albums/TableAlbums.jsx")
+    tableAlbums: () => import("~/components/Albums/TableAlbums.vue")
   },
   computed: {
     albums() {
@@ -45,6 +46,10 @@ export default {
 
         td:nth-of-type(4):before {
           content: "Gênero";
+        }
+
+        td:nth-of-type(5):before {
+          content: "Lançamento";
         }
       }
     }

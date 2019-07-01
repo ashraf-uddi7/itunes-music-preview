@@ -3,8 +3,8 @@
     <input
       v-model="text"
       type="text"
-      @input="change"
       :placeholder="placeholder"
+      @input="change"
     />
     <div class="icon">
       <div
