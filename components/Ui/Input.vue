@@ -40,6 +40,10 @@ export default {
       timeout: null
     };
   },
+  mounted() {
+    this.text = "Jack Johnson";
+    this.change(this.text);
+  },
   methods: {
     change(e) {
       clearTimeout(this.timeout);
