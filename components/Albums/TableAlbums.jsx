@@ -1,7 +1,8 @@
 export default {
   components: {
     pagination: () => import("../Ui/Pagination.vue"),
-    loading: () => import("../Ui/Loading.jsx")
+    loading: () => import("../Ui/Loading"),
+    OrderIcon: () => import("../Ui/OrderIcon")
   },
   props: {
     albums: {
@@ -19,6 +20,10 @@ export default {
       itemsTo: 1,
       current: 1,
       itemsPerPage: 1
+    },
+    orderBy: {
+      field: "artistName",
+      dir: "asc"
     }
   }),
   computed: {
@@ -28,6 +33,8 @@ export default {
       }
       // pagination
       let albums = [...this.albums];
+      albums.sort(this.compare(this.orderBy.field, this.orderBy.dir));
+
       return albums.splice(
         this.pagination.itemsFrom,
         this.pagination.itemsPerPage
@@ -41,6 +48,39 @@ export default {
     openAlbum(album) {
       this.$store.commit("store/SET_ALBUM", album);
       this.$router.push("album");
+    },
+    compare(key, order = "asc") {
+      return (a, b) => {
+        if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+          return 0;
+        }
+
+        const varA = typeof a[key] === "string" ? a[key].toUpperCase() : a[key];
+        const varB = typeof b[key] === "string" ? b[key].toUpperCase() : b[key];
+
+        let comparison = 0;
+        if (varA > varB) {
+          comparison = 1;
+        } else if (varA < varB) {
+          comparison = -1;
+        }
+        return order == "desc" ? comparison * -1 : comparison;
+      };
+    },
+    setOrder(field) {
+      let orderBy;
+      if (field == this.orderBy.field) {
+        orderBy = {
+          ...this.orderBy,
+          dir: this.orderBy.dir == "asc" ? "desc" : "asc"
+        };
+      } else {
+        orderBy = {
+          field,
+          dir: "asc"
+        };
+      }
+      this.orderBy = orderBy;
     }
   },
   render(h) {
@@ -68,6 +108,9 @@ export default {
             <td>
               <p> {album.primaryGenreName} </p>
             </td>
+            <td>
+              <p> {album.releaseDate} </p>
+            </td>
           </tr>
         );
       });
@@ -77,10 +120,23 @@ export default {
           <table>
             <thead>
               <tr>
-                <th class="art"> </th>
-                <th> Artista </th>
-                <th> Album </th>
-                <th> Gênero </th>
+                <th class="art"></th>
+                <th on-click={() => this.setOrder("artistName")}>
+                  <b>Artista</b>
+                  <order-icon orderby={this.orderBy} field="artistName" />
+                </th>
+                <th on-click={() => this.setOrder("collectionName")}>
+                  <b>Album</b>
+                  <order-icon orderby={this.orderBy} field="collectionName" />
+                </th>
+                <th on-click={() => this.setOrder("primaryGenreName")}>
+                  <b>Gênero</b>
+                  <order-icon orderby={this.orderBy} field="primaryGenreName" />
+                </th>
+                <th on-click={() => this.setOrder("releaseDate")}>
+                  <b>Lançamento</b>
+                  <order-icon orderby={this.orderBy} field="releaseDate" />
+                </th>
               </tr>
             </thead>
             <tbody>{rows}</tbody>
