@@ -2,7 +2,7 @@
   <div>
     <loading v-if="loading" loading />
 
-    <table v-if="!loading">
+    <table v-if="!loading && filterdAlbums.length">
       <thead>
         <tr>
           <th class="art"></th>
@@ -51,7 +51,7 @@
       </tbody>
     </table>
     <pagination
-      v-if="!loading"
+      v-if="!loading && filterdAlbums.length"
       :size="albums.length"
       @change="onChangePagination"
     />
