@@ -52,78 +52,83 @@ export default {
 </script>
 
 <style lang="scss">
-.card + a {
-  cursor: pointer;
-  vertical-align: bottom;
-  position: relative;
-  display: flex;
-  position: absolute;
-  bottom: 21px;
-  right: 11px;
-  text-decoration: none;
-  color: #010101;
-}
-
-.card + a:hover {
-  color: #000000;
-  text-decoration: underline;
-}
-.card + div > a {
-  vertical-align: middle;
-  float: right;
-  cursor: pointer;
-  height: 120px;
-  padding: 45px 10px;
-  font-weight: bold;
-}
-picture {
-  transition: all linear 0.4s;
-  img {
-    transition: all linear 0.4s;
-  }
-  .controls {
+.container {
+  .card + a {
+    cursor: pointer;
+    vertical-align: bottom;
+    position: relative;
+    display: flex;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #2f2e2ebd;
-    opacity: 0;
-    transition: ease 0.3s opacity;
-    i {
-      color: #fff;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      padding: 18px;
-      cursor: pointer;
+    bottom: 21px;
+    right: 11px;
+    text-decoration: none;
+    color: #010101;
+  }
+
+  .card + a:hover {
+    color: #000000;
+    text-decoration: underline;
+  }
+  .card + div > a {
+    vertical-align: middle;
+    float: right;
+    cursor: pointer;
+    height: 120px;
+    padding: 45px 10px;
+    font-weight: bold;
+  }
+  picture {
+    transition: all linear 0.4s;
+    img {
+      transition: all linear 0.4s;
     }
-    .radial-progress-container {
+    .controls {
       position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: block;
-      float: none;
-      margin: auto;
+      width: 100%;
+      height: 100%;
+      background: #2f2e2ebd;
+      opacity: 0;
+      transition: ease 0.3s opacity;
+      i {
+        color: #fff;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        padding: 18px;
+        cursor: pointer;
+      }
+      .radial-progress-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: block;
+        float: none;
+        margin: auto;
+      }
     }
   }
-}
 
-picture:hover .controls,
-tr.active picture .controls {
-  opacity: 1;
-  z-index: 1;
-}
-tr {
-  cursor: default;
-}
-tr.active {
-  picture {
-    border-radius: 100%;
-    img {
-      animation: rotate 3s linear infinite;
+  table {
+    tbody {
+      tr:hover picture .controls {
+        opacity: 1;
+        z-index: 1;
+      }
+      tr {
+        cursor: default;
+      }
+      tr.active {
+        picture {
+          border-radius: 100%;
+          img {
+            animation: rotate 3s linear infinite;
+          }
+        }
+      }
     }
   }
 }
