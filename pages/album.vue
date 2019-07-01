@@ -115,6 +115,7 @@ export default {
 
   table {
     tbody {
+      tr.active picture .controls,
       tr:hover picture .controls {
         opacity: 1;
         z-index: 1;
