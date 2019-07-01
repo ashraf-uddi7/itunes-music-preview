@@ -9,7 +9,7 @@
 <script>
 export default {
   components: {
-    tableAlbums: () => import("~/components/Albums/TableAlbums.jsx")
+    tableAlbums: () => import("~/components/Albums/TableAlbums.vue")
   },
   computed: {
     albums() {
@@ -29,13 +29,6 @@ export default {
 @import "~/assets/style/table.scss";
 @media only screen and (max-width: 760px) {
   table {
-    thead {
-      tr {
-        th i.material-icons {
-          vertical-align: middle;
-        }
-      }
-    }
     tbody {
       tr {
         td:nth-of-type(1):before {
