@@ -109,9 +109,9 @@ export default {
       cursor: pointer;
       font-weight: bold;
       height: 32px;
+      width: 30px;
       display: inline-block;
       vertical-align: top;
-      margin: 0 2px;
       &.disabled {
         font-weight: normal;
         cursor: no-drop;
