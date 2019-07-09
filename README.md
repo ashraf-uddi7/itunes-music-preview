@@ -1,4 +1,4 @@
-# pontomais-musics
+# itunes-music-preview
 
 > Music library consuming apple itunes api.
 
